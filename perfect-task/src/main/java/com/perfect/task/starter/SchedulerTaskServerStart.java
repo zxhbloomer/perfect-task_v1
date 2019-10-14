@@ -9,6 +9,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
+ * 启动通过mq过来定时任务
+ *
  * @author zxh
  */
 @SpringBootApplication(
@@ -17,6 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
             "com.perfect.framework",
             "com.perfect.*",
             "com.perfect.redis",
+            "com.perfect.mq.rabbitmq",
             "com.perfect.quartz.config"
         })
 @EnableTransactionManagement
