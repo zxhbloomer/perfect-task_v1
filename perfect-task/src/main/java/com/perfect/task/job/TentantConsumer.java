@@ -55,6 +55,10 @@ public class TentantConsumer {
         channel.basicAck(deliveryTag, multiple);
     }
 
+    /**
+     * 开始启用定时任务quartz
+     * @param messageContext
+     */
     private void process(Object messageContext){
 
     }
