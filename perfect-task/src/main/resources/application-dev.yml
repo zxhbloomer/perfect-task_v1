@@ -47,6 +47,18 @@ spring:
         max-concurrency: 10
         ## 限流
         prefetch: 1
+      # 自定义
+      custom:
+        # 生产者
+        producer:
+          has-open: false
+          default-exchange: perfect-default-exchange
+          default-queue: perfect-default-queue
+          default-routing-key: perfect-default-routing-key.#
+        # 消费者
+        consumer:
+          has-open: true
+          default-queue: test_queue
   # REDIS设置
   redis:
     # Redis数据库索引（默认为0）
