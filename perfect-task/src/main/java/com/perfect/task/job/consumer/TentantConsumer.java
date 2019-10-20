@@ -1,4 +1,4 @@
-package com.perfect.mq.consumer.sys.config.tentant;
+package com.perfect.task.job.consumer;
 
 import com.perfect.bean.pojo.mqsender.MqSenderPojo;
 import com.perfect.framework.utils.mq.MessageUtil;
@@ -46,7 +46,6 @@ public class TentantConsumer {
     public void onMessage(@Payload Message messageDataObject, @Headers Map<String, Object> headers, Channel channel, CorrelationData correlationData)
         throws IOException {
         MqSenderPojo mqSenderPojo = MessageUtil.getMessageBodyBean(messageDataObject);
-
         Object messageContext = MessageUtil.getMessageContextBean(messageDataObject);
 
         Long deliveryTag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
