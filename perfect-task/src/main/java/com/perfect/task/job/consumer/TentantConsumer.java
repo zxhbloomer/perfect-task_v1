@@ -51,7 +51,7 @@ public class TentantConsumer {
         )
     )
     @RabbitHandler
-    public void onMessage(@Payload Message messageDataObject, @Headers Map<String, Object> headers, Channel channel, CorrelationData correlationData)
+    public void onMessage(@Payload Message messageDataObject, @Headers Map<String, Object> headers, Channel channel)
         throws IOException, TaskException, SchedulerException {
         MqSenderPojo mqSenderPojo = MessageUtil.getMessageBodyBean(messageDataObject);
         Object messageContext = MessageUtil.getMessageContextBean(messageDataObject);
