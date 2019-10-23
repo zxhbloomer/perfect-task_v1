@@ -23,6 +23,6 @@ public class TentantDisableJob extends AbstractQuartzJob {
 
     @Override
     protected void doExecute(JobExecutionContext context, SJobEntity sysJob) throws Exception {
-        log.debug("testxxxxxtttt");
+        log.debug("TentantDisableJob");
     }
 }
