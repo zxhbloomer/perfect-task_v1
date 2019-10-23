@@ -19,13 +19,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class TentantJob extends AbstractQuartzJob {
+public class TentantEnableJob extends AbstractQuartzJob {
 
     @Autowired
     private ISJobService service;
 
     @Override
     protected void doExecute(JobExecutionContext context, SJobEntity sysJob) throws Exception {
-        log.debug("test");
+        log.debug("testxxxxxtttt");
     }
 }

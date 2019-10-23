@@ -7,7 +7,7 @@ import com.perfect.core.service.quartz.ISJobService;
 import com.perfect.framework.utils.mq.MessageUtil;
 import com.perfect.mq.rabbitmq.mqenum.MQEnum;
 import com.perfect.quartz.util.ScheduleUtils;
-import com.perfect.task.job.TentantJob;
+import com.perfect.task.job.TentantEnableJob;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.Scheduler;
@@ -34,7 +34,7 @@ import java.util.Map;
 
 @Component
 @Slf4j
-public class TentantConsumer {
+public class TentantEnableConsumer {
 
     @Autowired
     private ISJobService service;
@@ -52,9 +52,9 @@ public class TentantConsumer {
      */
     @RabbitListener(
         bindings = @QueueBinding(
-            value = @Queue(value = MQEnum.MqInfo.TentantTask.queueCode, durable = "true"),
-            exchange = @Exchange(name=MQEnum.MqInfo.TentantTask.exchange, durable = "true", type = "topic"),
-            key = MQEnum.MqInfo.TentantTask.routing_key
+            value = @Queue(value = MQEnum.MqInfo.TentantEnableTask.queueCode, durable = "true"),
+            exchange = @Exchange(name=MQEnum.MqInfo.TentantEnableTask.exchange, durable = "true", type = "topic"),
+            key = MQEnum.MqInfo.TentantEnableTask.routing_key
         )
     )
     @RabbitHandler
@@ -105,7 +105,7 @@ public class TentantConsumer {
      * @throws SchedulerException
      */
     public void executeSimpleTrigger (SJobEntity job) throws TaskException, SchedulerException {
-        ScheduleUtils.createScheduleJobSimpleTrigger(scheduler, job, TentantJob.class);
+        ScheduleUtils.createScheduleJobSimpleTrigger(scheduler, job, TentantEnableJob.class);
     }
 
     /**
@@ -115,6 +115,6 @@ public class TentantConsumer {
      * @throws SchedulerException
      */
     public void executeCronTrigger (SJobEntity job) throws TaskException, SchedulerException {
-        ScheduleUtils.createScheduleJobCron(scheduler, job, TentantJob.class);
+        ScheduleUtils.createScheduleJobCron(scheduler, job, TentantEnableJob.class);
     }
 }
