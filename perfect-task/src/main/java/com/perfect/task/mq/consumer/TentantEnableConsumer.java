@@ -82,6 +82,7 @@ public class TentantEnableConsumer {
      */
     public void executeTrigger(SJobEntity job) throws TaskException, SchedulerException {
         job.setJob_name(job.getJob_name()+"["+job.getJob_serial_id()+"]");
+        // 1、job数据库更新
         if(job.getId() == null){
             // 先插入数据库，获取id
             service.insert(job);
@@ -89,12 +90,14 @@ public class TentantEnableConsumer {
             // 更新数据库，获取id
             service.update(job);
         }
+        // 2、开始生成任务
+        boolean triggerCreate = false;
         if(job.getIs_cron()){
             // 如果是cron表达式方式
-            executeCronTrigger(job);
+            triggerCreate = executeCronTrigger(job);
         } else {
             // 调用的是simpletrigger方式
-            executeSimpleTrigger(job);
+            triggerCreate = executeSimpleTrigger(job);
         }
     }
 
@@ -104,8 +107,8 @@ public class TentantEnableConsumer {
      * @throws TaskException
      * @throws SchedulerException
      */
-    public void executeSimpleTrigger (SJobEntity job) throws TaskException, SchedulerException {
-        ScheduleUtils.createScheduleJobSimpleTrigger(scheduler, job, TentantEnableJob.class);
+    public boolean executeSimpleTrigger (SJobEntity job) throws TaskException, SchedulerException {
+        return ScheduleUtils.createScheduleJobSimpleTrigger(scheduler, job, TentantEnableJob.class);
     }
 
     /**
@@ -114,7 +117,7 @@ public class TentantEnableConsumer {
      * @throws TaskException
      * @throws SchedulerException
      */
-    public void executeCronTrigger (SJobEntity job) throws TaskException, SchedulerException {
-        ScheduleUtils.createScheduleJobCron(scheduler, job, TentantEnableJob.class);
+    public boolean executeCronTrigger (SJobEntity job) throws TaskException, SchedulerException {
+        return ScheduleUtils.createScheduleJobCron(scheduler, job, TentantEnableJob.class);
     }
 }

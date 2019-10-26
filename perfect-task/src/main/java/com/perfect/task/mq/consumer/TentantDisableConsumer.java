@@ -80,7 +80,7 @@ public class TentantDisableConsumer {
      * @throws TaskException
      * @throws SchedulerException
      */
-    public void executeTrigger(SJobEntity job, String job_name) throws TaskException, SchedulerException {
+    public boolean executeTrigger(SJobEntity job, String job_name) throws TaskException, SchedulerException {
         job.setJob_name(job_name+"["+job.getJob_serial_id()+"]");
         if(job.getId() == null){
             // 先插入数据库，获取id
@@ -89,13 +89,15 @@ public class TentantDisableConsumer {
             // 更新数据库，获取id
             service.update(job);
         }
+        boolean triggerCreate = false;
         if(job.getIs_cron()){
             // 如果是cron表达式方式
-            executeCronTrigger(job, job_name);
+            triggerCreate = executeCronTrigger(job, job_name);
         } else {
             // 调用的是simpletrigger方式
-            executeSimpleTrigger(job, job_name);
+            triggerCreate = executeSimpleTrigger(job, job_name);
         }
+        return triggerCreate;
     }
 
     /**
@@ -104,8 +106,8 @@ public class TentantDisableConsumer {
      * @throws TaskException
      * @throws SchedulerException
      */
-    public void executeSimpleTrigger (SJobEntity job, String job_name) throws TaskException, SchedulerException {
-        ScheduleUtils.createScheduleJobSimpleTrigger(scheduler, job, TentantDisableJob.class);
+    public boolean executeSimpleTrigger (SJobEntity job, String job_name) throws TaskException, SchedulerException {
+        return ScheduleUtils.createScheduleJobSimpleTrigger(scheduler, job, TentantDisableJob.class);
     }
 
     /**
@@ -114,7 +116,7 @@ public class TentantDisableConsumer {
      * @throws TaskException
      * @throws SchedulerException
      */
-    public void executeCronTrigger (SJobEntity job, String job_name) throws TaskException, SchedulerException {
-        ScheduleUtils.createScheduleJobCron(scheduler, job, TentantDisableJob.class);
+    public boolean executeCronTrigger (SJobEntity job, String job_name) throws TaskException, SchedulerException {
+        return ScheduleUtils.createScheduleJobCron(scheduler, job, TentantDisableJob.class);
     }
 }
