@@ -27,7 +27,7 @@ spring:
     restart:
       enabled: true
   rabbitmq:
-    addresses: 127.0.0.1:5672
+    addresses: 172.21.1.227:5672
     username: admin
     password: admin
     virtual-host: /
@@ -136,7 +136,7 @@ spring:
       connection-timeout: 30000
       connection-test-query: SELECT 1
       db1:
-        jdbc-url: jdbc:mysql://localhost:3306/business?tinyInt1isBit=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+        jdbc-url: jdbc:mysql://localhost:33006/business?tinyInt1isBit=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
         username: root
         password: 1q2w3e4r
       db2:

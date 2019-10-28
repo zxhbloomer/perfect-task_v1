@@ -20,7 +20,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
             "com.perfect.*",
             "com.perfect.redis",
             "com.perfect.mq.rabbitmq",
-            "com.perfect.quartz.config"
+            "com.perfect.quartz.config",
+            "com.perfect.task.*",
         })
 @EnableTransactionManagement
 @EntityScan(basePackages = {"com.perfect.*"})

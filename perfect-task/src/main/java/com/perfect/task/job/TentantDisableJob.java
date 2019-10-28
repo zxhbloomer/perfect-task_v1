@@ -2,6 +2,7 @@ package com.perfect.task.job;
 
 import com.perfect.bean.entity.quartz.SJobEntity;
 import com.perfect.bean.entity.sys.config.tenant.STentantEntity;
+import com.perfect.common.utils.bean.BeanUtilsSupport;
 import com.perfect.core.service.quartz.ISJobService;
 import com.perfect.core.service.sys.config.tentant.ITentantService;
 import com.perfect.quartz.util.AbstractQuartzJob;
@@ -28,7 +29,8 @@ public class TentantDisableJob extends AbstractQuartzJob {
     @Transactional(rollbackFor = Exception.class)
     protected void doExecute(JobExecutionContext context, SJobEntity sysJob) throws Exception {
         log.debug("TentantDisableJob");
-        STentantEntity entity = service.getById(sysJob.getJob_serial_id());
-        service.disableProcess(entity);
+        STentantEntity entity = BeanUtilsSupport.getBean(ITentantService.class).getById(sysJob.getJob_serial_id());
+        // 写入数据库当中
+        BeanUtilsSupport.getBean(ITentantService.class).disableProcess(entity);
     }
 }
