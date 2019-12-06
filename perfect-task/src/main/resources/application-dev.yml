@@ -222,7 +222,7 @@ perfect:
     # 首页路径
     index-url: /index
     # 登录路径
-    login-url: /api/v1/login
+    login-url: /login
     # 登出路径
     logout-url: /api/v1/logout
     # 记住我有效时间，单位为秒
