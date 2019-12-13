@@ -7,7 +7,7 @@ import com.perfect.core.service.quartz.ISJobService;
 import com.perfect.framework.utils.mq.MessageUtil;
 import com.perfect.mq.rabbitmq.mqenum.MQEnum;
 import com.perfect.quartz.util.ScheduleUtils;
-import com.perfect.task.job.TentantDisableJob;
+import com.perfect.task.job.TenantDisableJob;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.Scheduler;
@@ -34,7 +34,7 @@ import java.util.Map;
 
 @Component
 @Slf4j
-public class TentantDisableConsumer {
+public class TenantDisableConsumer {
 
     @Autowired
     private ISJobService service;
@@ -52,9 +52,9 @@ public class TentantDisableConsumer {
      */
     @RabbitListener(
         bindings = @QueueBinding(
-            value = @Queue(value = MQEnum.MqInfo.TentantDisableTask.queueCode, durable = "true"),
-            exchange = @Exchange(name=MQEnum.MqInfo.TentantDisableTask.exchange, durable = "true", type = "topic"),
-            key = MQEnum.MqInfo.TentantDisableTask.routing_key
+            value = @Queue(value = MQEnum.MqInfo.TenantDisableTask.queueCode, durable = "true"),
+            exchange = @Exchange(name=MQEnum.MqInfo.TenantDisableTask.exchange, durable = "true", type = "topic"),
+            key = MQEnum.MqInfo.TenantDisableTask.routing_key
         )
     )
     @RabbitHandler
@@ -107,7 +107,7 @@ public class TentantDisableConsumer {
      * @throws SchedulerException
      */
     public boolean executeSimpleTrigger (SJobEntity job, String job_name) throws TaskException, SchedulerException {
-        return ScheduleUtils.createScheduleJobSimpleTrigger(scheduler, job, TentantDisableJob.class);
+        return ScheduleUtils.createScheduleJobSimpleTrigger(scheduler, job, TenantDisableJob.class);
     }
 
     /**
@@ -117,6 +117,6 @@ public class TentantDisableConsumer {
      * @throws SchedulerException
      */
     public boolean executeCronTrigger (SJobEntity job, String job_name) throws TaskException, SchedulerException {
-        return ScheduleUtils.createScheduleJobCron(scheduler, job, TentantDisableJob.class);
+        return ScheduleUtils.createScheduleJobCron(scheduler, job, TenantDisableJob.class);
     }
 }

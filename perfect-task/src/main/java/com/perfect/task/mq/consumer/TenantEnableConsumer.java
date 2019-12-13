@@ -7,7 +7,7 @@ import com.perfect.core.service.quartz.ISJobService;
 import com.perfect.framework.utils.mq.MessageUtil;
 import com.perfect.mq.rabbitmq.mqenum.MQEnum;
 import com.perfect.quartz.util.ScheduleUtils;
-import com.perfect.task.job.TentantEnableJob;
+import com.perfect.task.job.TenantEnableJob;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.Scheduler;
@@ -34,7 +34,7 @@ import java.util.Map;
 
 @Component
 @Slf4j
-public class TentantEnableConsumer {
+public class TenantEnableConsumer {
 
     @Autowired
     private ISJobService service;
@@ -52,9 +52,9 @@ public class TentantEnableConsumer {
      */
     @RabbitListener(
         bindings = @QueueBinding(
-            value = @Queue(value = MQEnum.MqInfo.TentantEnableTask.queueCode, durable = "true"),
-            exchange = @Exchange(name=MQEnum.MqInfo.TentantEnableTask.exchange, durable = "true", type = "topic"),
-            key = MQEnum.MqInfo.TentantEnableTask.routing_key
+            value = @Queue(value = MQEnum.MqInfo.TenantEnableTask.queueCode, durable = "true"),
+            exchange = @Exchange(name=MQEnum.MqInfo.TenantEnableTask.exchange, durable = "true", type = "topic"),
+            key = MQEnum.MqInfo.TenantEnableTask.routing_key
         )
     )
     @RabbitHandler
@@ -108,7 +108,7 @@ public class TentantEnableConsumer {
      * @throws SchedulerException
      */
     public boolean executeSimpleTrigger (SJobEntity job) throws TaskException, SchedulerException {
-        return ScheduleUtils.createScheduleJobSimpleTrigger(scheduler, job, TentantEnableJob.class);
+        return ScheduleUtils.createScheduleJobSimpleTrigger(scheduler, job, TenantEnableJob.class);
     }
 
     /**
@@ -118,6 +118,6 @@ public class TentantEnableConsumer {
      * @throws SchedulerException
      */
     public boolean executeCronTrigger (SJobEntity job) throws TaskException, SchedulerException {
-        return ScheduleUtils.createScheduleJobCron(scheduler, job, TentantEnableJob.class);
+        return ScheduleUtils.createScheduleJobCron(scheduler, job, TenantEnableJob.class);
     }
 }
