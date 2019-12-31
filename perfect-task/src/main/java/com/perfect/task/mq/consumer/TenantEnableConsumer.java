@@ -5,7 +5,7 @@ import com.perfect.bean.pojo.mqsender.MqSenderPojo;
 import com.perfect.common.exception.job.TaskException;
 import com.perfect.core.service.quartz.ISJobService;
 import com.perfect.framework.utils.mq.MessageUtil;
-import com.perfect.mq.rabbitmq.mqenum.MQEnum;
+import com.perfect.mq.rabbitmq.enums.MQEnum;
 import com.perfect.quartz.util.ScheduleUtils;
 import com.perfect.task.job.TenantEnableJob;
 import com.rabbitmq.client.Channel;
