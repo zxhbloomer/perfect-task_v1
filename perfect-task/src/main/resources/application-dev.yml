@@ -173,7 +173,7 @@ mybatis-plus:
 #-----------------------Perfect  Configuration---------
 perfect:
   # AOP记录用户操作日志，true开启，false关闭
-  open-aop-log: true
+  open-sys-log: true
   config:
     # 文件上传路径
     fs-appid: 0
@@ -182,7 +182,7 @@ perfect:
     fs-username: PERFECT
     log-print: true
     log-save-db: true
-    open-aop-log: true
+    open-sys-log: true
     # 错误日志输出简单模式
     simple-model: true
   security:
