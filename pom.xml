@@ -74,11 +74,6 @@
                 <version>${project.build.springbootversion}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework.security.oauth.boot</groupId>
-                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
-                <version>${project.build.springbootversion}</version>
-            </dependency>
-            <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>8.0.15</version>
@@ -161,6 +156,16 @@
                 <version>2.6</version>
             </dependency>
             <!-- prefect 模块 -->
+            <dependency>
+                <groupId>com.perfect</groupId>
+                <artifactId>perfect-security</artifactId>
+                <version>${perfect.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.perfect</groupId>
+                <artifactId>perfect-manager</artifactId>
+                <version>${perfect.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.perfect</groupId>
                 <artifactId>perfect-bean</artifactId>
