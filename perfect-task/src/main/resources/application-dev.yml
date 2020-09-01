@@ -153,7 +153,7 @@ RestTemplate-ReadTimeout: 150000
 
 #-----------------------日志设置---------------------------
 log:
-  path: D:/spring_log/finance
+  path: D:/spring_log/perfect/task
 
 #-----------------------mybatis-plus 设置---------
 mybatis-plus:
