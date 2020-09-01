@@ -135,12 +135,12 @@
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
-    <logger name="org.springframework.web" level="DEBUG"/>
-    <logger name="org.springframework.security" level="DEBUG"/>
-    <logger name="org.springframework" level="INFO"/>
-    <logger name="org.springframework.data.mybatis" level="DEBUG"/>
+    <logger name="org.springframework.web" level="${logLevel}"/>
+    <logger name="org.springframework.security" level="${logLevel}"/>
+    <logger name="org.springframework" level="${logLevel}"/>
+    <logger name="org.springframework.data.mybatis" level="${logLevel}"/>
     <logger name="org.springframework.aop.aspectj" level="ERROR"/>
-    <logger name="org.springframework.cache" level="WARN"/>
+    <logger name="org.springframework.cache" level="${logLevel}"/>
     <logger name="javax.activation" level="WARN"/>
     <logger name="javax.mail" level="WARN"/>
     <logger name="javax.xml.bind" level="WARN"/>
@@ -150,11 +150,11 @@
     <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
     <logger name="org.bson" level="WARN"/>
     <logger name="org.hibernate.validator" level="WARN"/>
-    <logger name="org.hibernate" level="DEBUG"/>
+    <logger name="org.hibernate" level="${logLevel}"/>
     <logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>
     <logger name="org.thymeleaf" level="WARN"/>
     <logger name="org.xnio" level="WARN"/>
-    <logger name="com.perfect" level="DEBUG"/>
+    <logger name="com.perfect" level="${logLevel}"/>
     <logger name="sun.rmi" level="WARN"/>
     <logger name="liquibase" level="WARN"/>
     <logger name="sun.rmi.transport" level="WARN"/>
@@ -195,7 +195,7 @@
         <logger name="com.perfect" level="debug"/>
     </springProfile>
 
-    <root level="DEBUG">
+    <root level="${logLevel}">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="DEBUG_FILE" />
         <appender-ref ref="INFO_FILE" />
@@ -204,14 +204,14 @@
     </root>
 
     <!--生产环境:输出到文件-->
-    <!--<springProfile name="pro">-->
-    <!--<root level="info">-->
-    <!--<appender-ref ref="CONSOLE" />-->
-    <!--<appender-ref ref="DEBUG_FILE" />-->
-    <!--<appender-ref ref="INFO_FILE" />-->
-    <!--<appender-ref ref="ERROR_FILE" />-->
-    <!--<appender-ref ref="WARN_FILE" />-->
-    <!--</root>-->
-    <!--</springProfile>-->
+    <!--    <springProfile name="pro">-->
+    <!--        <root level="info">-->
+    <!--            <appender-ref ref="CONSOLE" />-->
+    <!--            <appender-ref ref="DEBUG_FILE" />-->
+    <!--            <appender-ref ref="INFO_FILE" />-->
+    <!--            <appender-ref ref="ERROR_FILE" />-->
+    <!--            <appender-ref ref="WARN_FILE" />-->
+    <!--        </root>-->
+    <!--    </springProfile>-->
 
 </configuration>
