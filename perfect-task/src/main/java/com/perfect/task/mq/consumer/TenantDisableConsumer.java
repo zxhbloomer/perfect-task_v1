@@ -57,6 +57,8 @@ public class TenantDisableConsumer {
             key = MQEnum.MqInfo.TenantDisableTask.routing_key
         )
     )
+
+    // 如果有消息过来，在消费的时候调用这个方法
     @RabbitHandler
     public void onMessage(@Payload Message messageDataObject, @Headers Map<String, Object> headers, Channel channel)
         throws IOException, TaskException, SchedulerException {
